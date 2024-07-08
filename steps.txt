@@ -1,0 +1,16 @@
+Check if the browser supports gelocation
+
+Set options for high accuracy, a 5-second timeout, and no caching
+
+Use watchPostion to track the users location continuosly .
+
+Emit the lattitude and longitutde via socket with "send-location". Log any errors to the console
+
+Initiate a map centered at coordinates (0,0) with a zoom level of 15 using leaflet. Add the OpenstreetMap tiles to the map
+
+Create an empty object markers.
+
+When receiving location data via the socket, extract id, lattitude and longitude and center the map on the new coordinates.
+
+If a marker for the id exists, update its position, otherwise, create a new marker at the given coordinates and add it to the map.
+When a user disconnects, remove their marker from the map and delete it from markers.
