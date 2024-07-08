@@ -11,7 +11,6 @@ const port = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
-// handling connection of socket.io from script.js
 io.on("connection", (socket) => {
     console.log("new user connected");
 
