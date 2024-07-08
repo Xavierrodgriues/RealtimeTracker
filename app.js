@@ -27,6 +27,12 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
