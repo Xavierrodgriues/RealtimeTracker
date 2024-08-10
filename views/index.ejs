@@ -3,15 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Map with Event Detection</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #map { 
+            height: 400px; 
+            margin-top: 60px; /* Adjusted margin to account for the fixed navbar */
+        }
+        #navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px; 
+            background-color: #333; 
+            position: fixed; 
+            width: 100%; 
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensure navbar is on top of other content */
+            height: 5rem;
+        }
+    
+        #navbar a { 
+            color: white; 
+            padding: 14px 20px; 
+            text-decoration: none; 
+            text-align: center; 
+            border-radius: 4px; /* Rounded corners for the links */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+        }
+        #navbar a:hover { 
+            background-color: #ddd; 
+            color: black; 
+        }
+        #city-list { 
+            padding: 20px; 
+            margin-top: 20px; 
+            background-color: #f4f4f4; 
+        }
+        #city-list ul { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+        #city-list li { 
+            padding: 10px; 
+            cursor: pointer; 
+            border-bottom: 1px solid #ddd; 
+        }
+        #city-list li:hover { 
+            background-color: #ddd; 
+        }
+        img{
+            width: 10rem;
+            height: 4rem;
+        }
+    </style>
 </head>
 <body>
-    <div id="map" style="width: 100%; height: 100vh;"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
-    <script src="/js/script.js"></script>
+    <nav id="navbar">
+        <img src="eco.jpg" alt="Logo"> <!-- Add your logo image here -->
+        <div>
+            <a href="#" onclick="showEvent('forestFire')">Forest Fire</a>
+            <a href="#" onclick="showEvent('glacierMelt')">Glacier Melt</a>
+            <a href="#" onclick="showEvent('droughtDetection')">Drought Detection</a>
+        </div>
+    </nav>
+
+    <div id="map"></div>
+
+    <div id="city-list"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+
 </body>
 </html>
